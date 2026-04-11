@@ -1,5 +1,13 @@
-# system
-.venv
-.idea
+# [project]
+__pycache__/
+
+# [git]
 .gitignore
 .git
+
+# [system]
+.idea
+
+# [python]
+*.pyc
+.venv
