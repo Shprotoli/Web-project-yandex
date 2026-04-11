@@ -1,6 +1,9 @@
 # [project]
 __pycache__/
 
+# [db]
+*.db
+
 # [git]
 .gitignore
 .git
