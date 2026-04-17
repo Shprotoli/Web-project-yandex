@@ -1,31 +1,7 @@
-from enum import Enum
-from typing import List, Dict, Any
+from typing import Dict, Any
 
 from backend.db.repositories.user_repository import UserRepository
-
-
-class TypeUserError(Enum):
-    PASSWORD = "password"
-    USERNAME = "username"
-    EMAIL = "email"
-    OTHER = "other"
-
-
-class ValidationResult:
-    def __init__(self):
-        self._errors: List[Dict[str, str]] = []
-
-    def add_error(self, type: TypeUserError, message: str) -> None:
-        self._errors.append({
-            "type": type.value,
-            "message": message,
-        })
-
-    def is_valid(self) -> bool:
-        return len(self._errors) == 0
-
-    def get_errors(self) -> List[Dict[str, str]]:
-        return self._errors
+from backend.web.service.type_errors import ValidationResult, TypeUserError
 
 
 class UserService:
