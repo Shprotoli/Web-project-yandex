@@ -3,16 +3,20 @@ from backend.db.models.user import User
 
 
 class UserRepository:
-    def get_by_email(self, email: str) -> User | None:
+    @staticmethod
+    def get_by_email(email: str) -> User | None:
         return User.query.filter_by(email=email).first()
 
-    def get_by_username(self, username: str) -> User | None:
+    @staticmethod
+    def get_by_username(username: str) -> User | None:
         return User.query.filter_by(username=username).first()
 
-    def get_by_id(self, user_id: int) -> User | None:
+    @staticmethod
+    def get_by_id(user_id: int) -> User | None:
         return User.query.get(user_id)
 
-    def create(self, user: User) -> User:
+    @staticmethod
+    def create(user: User) -> User:
         db.session.add(user)
         db.session.commit()
         return user
