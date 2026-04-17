@@ -6,6 +6,7 @@ from backend.other.extensions import db, migrate
 # Models
 from backend.db.models.user import User
 from backend.db.models.blitz import Blitz
+from backend.db.models.session import Session
 
 
 def create_app():
