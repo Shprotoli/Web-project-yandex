@@ -5,6 +5,7 @@ from backend.other.extensions import db
 
 class Blitz(db.Model):
     __tablename__ = "blitz"
+
     id = Column(Integer, primary_key=True)
     title = Column(String(50), unique=True, nullable=False)
     description = Column(String(255), nullable=False)
@@ -12,4 +13,4 @@ class Blitz(db.Model):
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
 
     def __repr__(self):
-        return f"<Blitz {self.username}>"
+        return f"<Blitz {self.title}>"

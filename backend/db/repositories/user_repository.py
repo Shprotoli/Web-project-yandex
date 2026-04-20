@@ -4,6 +4,10 @@ from backend.db.models.user import User
 
 class UserRepository:
     @staticmethod
+    def get_all() -> list[User]:
+        return User.query.order_by(User.id.asc()).all()
+
+    @staticmethod
     def get_by_email(email: str) -> User | None:
         return User.query.filter_by(email=email).first()
 
@@ -13,7 +17,7 @@ class UserRepository:
 
     @staticmethod
     def get_by_id(user_id: int) -> User | None:
-        return User.query.get(user_id)
+        return db.session.get(User, user_id)
 
     @staticmethod
     def create(user: User) -> User:

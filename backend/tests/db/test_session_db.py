@@ -25,7 +25,7 @@ def app():
 @pytest.fixture
 def user_id(app):
     with app.app_context():
-        user = User(username="test_user", password="hashed_password")
+        user = User(username="test_user", email="test_user@example.com", password="hashed_password")
         db.session.add(user)
         db.session.commit()
         return user.id

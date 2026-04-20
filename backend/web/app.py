@@ -1,5 +1,6 @@
 from flask import Flask
 
+from backend.api import register_api
 from backend.other.config import DevelopmentConfig
 from backend.other.extensions import db, migrate
 
@@ -9,12 +10,13 @@ from backend.db.models.blitz import Blitz
 from backend.db.models.session import Session
 
 
-def create_app():
+def create_app(config_object=DevelopmentConfig):
     app = Flask(__name__)
-    app.config.from_object(DevelopmentConfig)
+    app.config.from_object(config_object)
 
     db.init_app(app)
     migrate.init_app(app, db)
+    register_api(app)
 
     return app
 

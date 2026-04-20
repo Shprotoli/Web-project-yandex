@@ -20,7 +20,7 @@ def app():
 
 def test_create_user(app):
     with app.app_context():
-        user = User(username="alex", password="123")
+        user = User(username="alex", email="alex@example.com", password="123")
         db.session.add(user)
         db.session.commit()
 
