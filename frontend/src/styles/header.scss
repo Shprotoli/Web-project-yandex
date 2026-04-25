@@ -1,0 +1,172 @@
+:root {
+  --header-height: 70px;
+  --margin: 140px;
+  --max-width-for-mobile: 1000px;
+  --max-width-for-faq-show: 1280px;
+}
+
+@media (min-width: 1000px) and (max-width: 1280px) {
+  :root {
+    --margin: 60px;
+  }
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --margin: 30px;
+  }
+}
+
+.header {
+  user-select: none;
+
+  width: 100%;
+  height: var(--header-height);
+  border-bottom: 1px solid #00000010;
+
+  display: flex;
+  align-items: center;
+
+  &__logo {
+    margin-left: var(--margin);
+    flex-shrink: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      border-radius: 12px;
+    }
+
+    svg {
+      margin-left: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  &__nav {
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: center;
+
+    flex: 1;
+    gap: 30px;
+
+    @media (max-width: 1000px) {
+      display: none;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      svg {
+        margin-left: 8px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-right: var(--margin);
+
+    @media (max-width: 1000px) {
+      margin-left: auto;
+    }
+
+    .button-more {
+      display: none;
+
+      @media (max-width: 1000px) {
+        display: block;
+      }
+    }
+
+    .button-auth {
+      width: 114px;
+      height: 38px;
+
+      background: rgba(126, 20, 255, 0.1);
+      border-radius: 9px;
+      border: none;
+
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+      }
+
+      svg {
+        margin-right: 2px;
+        margin-top: -1px;
+        flex-shrink: 0;
+      }
+    }
+
+    .information {
+      text-align: right;
+
+      &__nick {
+        font-size: 16px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+      }
+
+      &__id {
+        margin-top: 4px;
+
+        font-size: 11px;
+        font-family: "Inter", sans-serif;
+
+        color: #0B0B0F60;
+      }
+    }
+
+    .navigation {
+      margin-left: 4px;
+
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      &__avatar {
+        border-radius: 10px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &__exit {
+        @media (max-width: 1000px) {
+          display: none;
+        }
+
+        &:hover {
+          opacity: 0.8;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
