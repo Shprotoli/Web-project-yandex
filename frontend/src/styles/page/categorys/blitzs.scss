@@ -1,0 +1,143 @@
+.blitzs {
+  margin-top: 60px;
+
+  @media (min-width: 1000px) and (max-width: 1280px) {
+    margin-left: -80px !important;
+    margin-right: 0 !important;
+  }
+
+  @media (max-width: 1000px) {
+    margin-left: -110px !important;
+    margin-right: 0 !important;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+
+    &-element {
+      width: 378px;
+      height: 240px;
+
+      border: 1px solid rgba(11, 11, 15, 0.05);
+      border-radius: 14px;
+
+      .title {
+        margin-top: 10px;
+
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 26px;
+
+        color: #0B0B0F;
+      }
+
+      .description {
+        width: 340px;
+
+        margin-top: 10px;
+
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+
+        color: rgba(0, 0, 0, 0.68);
+      }
+
+      .button__list {
+        user-select: none;
+
+        margin-top: 20px;
+
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap;
+
+        button:hover {
+          cursor: pointer;
+        }
+
+        &-element {
+          display: flex;
+
+          &:first-child {
+            width: 154px;
+            height: 44px;
+
+            padding-left: 14px;
+            align-items: center;
+            justify-content: left;
+
+            background: #7E14FF;
+            border-radius: 8px;
+            border: none;
+
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+
+            color: #FFFFFF;
+          }
+
+          &:last-child {
+            width: 182px;
+            height: 44px;
+
+            padding-left: 14px;
+            align-items: center;
+            justify-content: left;
+
+            background: rgba(126, 20, 255, 0.1);
+            border-radius: 8px;
+            border: none;
+
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+
+            color: #7E14FF;
+          }
+        }
+      }
+
+      .tag__list {
+        user-select: none;
+
+        display: flex;
+        gap: 6px;
+        flex-wrap: nowrap;
+
+        &-element {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          padding: 8px 8px;
+
+          width: 78px;
+
+          background: #0B0B0F;
+          border-radius: 8px;
+
+          font-family: 'Inter', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+
+          color: #FFFFFF;
+        }
+      }
+
+      .blitz-card {
+        padding-top: 20px;
+        padding-left: 20px;
+      }
+    }
+  }
+}
