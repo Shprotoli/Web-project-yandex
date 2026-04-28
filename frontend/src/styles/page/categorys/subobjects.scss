@@ -1,0 +1,87 @@
+@mixin buttonBaseStyle() {
+  padding: 4px;
+
+  border: 1px solid #0B0B0F10;
+  border-radius: 12px;
+
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 14px;
+
+    border-radius: 8px;
+    border: none;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+
+    background: white;
+
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.subobjects {
+  margin-top: 60px;
+  
+  @media (min-width: 1000px) and (max-width: 1280px) {
+    margin-top: 0;
+
+    margin-left: -80px !important;
+    margin-right: -80px !important;
+  }
+
+  @media (max-width: 1000px) {
+    margin-top: 0;
+
+    margin-left: -110px !important;
+    margin-right: -110px !important;
+  }
+
+  &__title {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+
+    color: #0B0B0F;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 20px;
+
+    &-element {
+      @include buttonBaseStyle();
+
+      button:hover {
+        background: #0B0B0F07;
+      }
+
+      &--active {
+        @include buttonBaseStyle();
+        border: 1px solid rgba(126, 20, 255, 0.05);
+
+        button {
+          background: rgba(126, 20, 255, 0.05);
+          color: #7E14FF;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import Header from "../Components/header";
 
 import "../styles/page/categorys/banner.scss"
+import "../styles/page/categorys/subobjects.scss"
 import "../styles/page/categorys/categorys-main.scss"
 
 import rusTestImg from '../assets/img/category/hero/rus_test.png';
@@ -43,12 +44,44 @@ function BannerElement() {
     )
 }
 
+function SubjectsElement() {
+    const subobjects = [
+        {title: "Русский язык", modif: "--active"},
+        {title: "Геометрия", modif: ""},
+        {title: "Алгебра", modif: ""},
+        {title: "Физика", modif: ""},
+        {title: "Информатика", modif: ""},
+        {title: "История", modif: ""},
+        {title: "Биология", modif: ""},
+        {title: "География", modif: ""},
+        {title: "ОБЖ", modif: ""},
+        {title: "Английский язык", modif: ""},
+        {title: "Немецкий язык", modif: ""},
+        {title: "Обществознание", modif: ""},
+    ]
+    return (
+        <>
+            <aside className={"subobjects"}>
+                <p className={"subobjects__title"}>Выберите предмет:</p>
+                <ul className={"subobjects__list"}>
+                    {subobjects.map((subobject, index) => (
+                        <li className={"subobjects__list-element"+subobject.modif}>
+                            <button>{subobject.title}</button>
+                        </li>
+                    ))}
+                </ul>
+            </aside>
+        </>
+    )
+}
+
 function CategorysPage() {
     return (
         <>
             <Header />
             <main>
                 <BannerElement />
+                <SubjectsElement />
             </main>
         </>
     )
