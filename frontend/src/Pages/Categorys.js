@@ -7,7 +7,7 @@ import "../styles/page/categorys/categorys-main.scss"
 
 import rusTestImg from '../assets/img/category/hero/rus_test.png';
 
-function Element() {
+function BlitzCard() {
     return (
         <li className={"blitzs__list-element"}>
             <article className={"blitz-card"}>
@@ -116,11 +116,7 @@ function BlitzsElement() {
         <>
             <aside className={"blitzs"}>
                 <ul className={"blitzs__list"}>
-                    <Element />
-                    <Element />
-                    <Element />
-                    <Element />
-                    <Element />
+                    <BlitzCard />
                 </ul>
             </aside>
         </>
