@@ -1,0 +1,157 @@
+$width-modal-input: 300px;
+$padding-modal-input: 16px 16px;
+
+$width-modal-button: 326px;
+$height-modal-button: 16px;
+
+.modal-background {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(1.5px);
+}
+
+.auth-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+
+  padding: 0 40px 50px 40px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  background: #FFFFFF;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  .background-items {
+    position: absolute;
+
+    &__top {
+      display: flex;
+      gap: 292px;
+
+      margin-top: 20px;
+
+      &:first-child {
+        margin-left: -80px;
+      }
+
+      &:last-child {
+      }
+    }
+  }
+
+  .body {
+    margin-top: 60px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .button-list {
+      @mixin button-style($backgroundColor, $textColor, $opacitySize: 0.8) {
+        width: $width-modal-button;
+        padding: $height-modal-button;
+
+        background: $backgroundColor;
+        border-radius: 12px;
+
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        text-align: center;
+
+        border: none;
+
+        color: $textColor;
+
+        transition: 0.3s;
+
+        &:hover {
+          opacity: $opacitySize;
+
+          cursor: pointer;
+        }
+      }
+
+      margin-top: 30px;
+
+      li {
+        margin-top: 10px;
+      }
+
+      &__auth {
+        button {
+          @include button-style(#7E14FF, white);
+        }
+      }
+
+      &__register {
+        button {
+          @include button-style(#F3E8FF, #7E14FF, 0.7);
+        }
+      }
+    }
+
+    .input-list {
+      @mixin input-style($backgroundColor, $textColor) {
+        margin-top: 20px;
+
+        p {
+          padding-left: 10px;
+
+          font-family: 'Roboto', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+
+          color: $textColor;
+
+          transition: color 0.3s ease-in-out;
+        }
+
+        input {
+          margin-top: 10px;
+
+          width: $width-modal-input;
+          padding: $padding-modal-input;
+
+          background: $backgroundColor;
+
+          border: none;
+          border-radius: 12px;
+
+          font-family: 'Roboto', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+
+          color: $textColor;
+
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      margin-top: 40px;
+
+      &__item {
+        @include input-style(#F4F4F4, #00000070);
+
+        &--error {
+          @include input-style(#FF090910, #FF5555);
+        }
+      }
+    }
+  }
+}

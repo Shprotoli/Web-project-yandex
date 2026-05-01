@@ -18,6 +18,13 @@
 }
 
 .header {
+  z-index: 20;
+
+  position: fixed;
+  top: 0;
+
+  background: white;
+
   user-select: none;
 
   width: 100%;
