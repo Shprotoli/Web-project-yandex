@@ -16,6 +16,10 @@ class BlitzRepository:
         return db.session.get(Blitz, blitz_id)
 
     @staticmethod
+    def get_by_id_subject(id_subject: str) -> Blitz | None:
+        return Blitz.query.filter_by(id_subject=id_subject).all()
+
+    @staticmethod
     def create(blitz: Blitz) -> Blitz:
         db.session.add(blitz)
         db.session.commit()

@@ -7,6 +7,7 @@ class Blitz(db.Model):
     __tablename__ = "blitz"
 
     id = Column(Integer, primary_key=True)
+    id_subject = Column(String(50), nullable=False)
     title = Column(String(50), unique=True, nullable=False)
     description = Column(String(255), nullable=False)
     path_file_blitz = Column(String(255), nullable=False)

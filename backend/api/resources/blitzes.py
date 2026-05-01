@@ -41,6 +41,21 @@ def get_blitz(blitz_id: int):
     return success_response(blitz_to_dict(blitz))
 
 
+@bp.get("/blitzes/subject/<string:id_subject>")
+def get_blitz_by_id_subject(id_subject: str):
+    blitzes = BlitzRepository.get_by_id_subject(id_subject)
+
+    if not blitzes:
+        return error_response(f"Blitz [id_subject={id_subject}] не найдены", status=404)
+
+    if isinstance(blitzes, list):
+        data = [blitz_to_dict(b) for b in blitzes]
+    else:
+        data = blitz_to_dict(blitzes)
+
+    return success_response(data)
+
+
 @bp.put("/blitzes/<int:blitz_id>")
 def update_blitz(blitz_id: int):
     blitz = BlitzRepository.get_by_id(blitz_id)

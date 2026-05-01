@@ -110,7 +110,8 @@ function SubjectsElement({idActiveSubject, setIdActiveSubject}) {
                             id={subject.id}
                             className={`subobjects__list-element ${isActive ? 'subobjects__list-element--active' : ''}`}
                         >
-                            <button onClick={() => setIdActiveSubject(subject.id)}>
+                            <button onClick={() => setIdActiveSubject(subject.id)
+                            }>
                                 {subject.title}
                             </button>
                         </li>
@@ -122,15 +123,50 @@ function SubjectsElement({idActiveSubject, setIdActiveSubject}) {
 }
 
 function BlitzsElement({idActiveSubject}) {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            setError(null);
+            setData([]);
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8080/blitzes/subject/${idActiveSubject}`);
+
+                if (!response.ok) {
+                    throw new Error(`Ошибка: ${response.status}`);
+                }
+
+                const json = await response.json();
+                setData(json.data);
+                console.log(json.data);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [idActiveSubject]);
+
     return (
         <>
             <aside className={"blitzs"}>
                 <ul className={"blitzs__list"}>
-                    <BlitzCard />
-                    <BlitzCard />
-                    <BlitzCard />
-                    <BlitzCard />
-                    <BlitzCard />
+                    {data && data.length > 0 && (
+                        <ul className="blitzs__list">
+                            {data.map((blitz) => (
+                                <BlitzCard
+                                    key={blitz.id || `blitz-${Math.random()}`}
+                                    blitz={blitz}
+                                />
+                            ))}
+                        </ul>
+                    )}
                 </ul>
             </aside>
         </>

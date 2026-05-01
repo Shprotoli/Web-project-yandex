@@ -25,6 +25,7 @@
 - `PUT /blitzes/<blitz_id>` — полное обновление blitz
 - `PATCH /blitzes/<blitz_id>` — частичное обновление blitz
 - `DELETE /blitzes/<blitz_id>` — удалить blitz
+- `GET /blitzes/subject/<id_subject>` — получить blitz по id предмета
 
 ## Service
 - `GET /health` — healthcheck
