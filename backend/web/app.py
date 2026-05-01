@@ -1,13 +1,19 @@
 from flask import Flask
 
-from backend.api import register_api
 from backend.other.config import DevelopmentConfig
 from backend.other.extensions import db, migrate
+from backend.api import register_api
 
 # Models
 from backend.db.models.user import User
 from backend.db.models.blitz import Blitz
 from backend.db.models.session import Session
+
+from flask import Blueprint
+from backend.api.resources.auth import bp as auth_bp
+from backend.api.resources.blitzes import bp as blitzes_bp
+from backend.api.resources.sessions import bp as sessions_bp
+from backend.api.resources.users import bp as users_bp
 
 
 def create_app(config_object=DevelopmentConfig):
