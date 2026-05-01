@@ -81,7 +81,7 @@ function Header() {
                 ))}
             </nav>
             <section className={"header__profile"}>
-                <ProfileAuth></ProfileAuth>
+                <ProfileNoAuth></ProfileNoAuth>
             </section>
         </header>
     )

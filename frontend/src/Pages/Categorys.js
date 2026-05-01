@@ -117,6 +117,10 @@ function BlitzsElement() {
             <aside className={"blitzs"}>
                 <ul className={"blitzs__list"}>
                     <BlitzCard />
+                    <BlitzCard />
+                    <BlitzCard />
+                    <BlitzCard />
+                    <BlitzCard />
                 </ul>
             </aside>
         </>
