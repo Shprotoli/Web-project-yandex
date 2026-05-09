@@ -9,7 +9,7 @@ def register_api(app):
     def healthcheck():
         return {"success": True, "data": {"status": "ok"}}, 200
 
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(users_bp)
-    app.register_blueprint(sessions_bp)
-    app.register_blueprint(blitzes_bp)
+    app.register_blueprint(auth_bp, url_prefix="/api/v1")
+    app.register_blueprint(users_bp, url_prefix="/api/v1")
+    app.register_blueprint(sessions_bp, url_prefix="/api/v1")
+    app.register_blueprint(blitzes_bp, url_prefix="/api/v1")

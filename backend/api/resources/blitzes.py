@@ -24,7 +24,10 @@ def create_blitz():
     if BlitzRepository.get_by_title(data["title"]):
         return error_response("Blitz с таким title уже существует", status=409)
 
+    id_subject = data.get("id_subject") or f"blitz-{data['title'].lower().replace(' ', '-')[:30]}"
+
     blitz = Blitz(
+        id_subject=id_subject,
         title=data["title"],
         description=data["description"],
         path_file_blitz=data["path_file_blitz"],
@@ -39,6 +42,28 @@ def get_blitz(blitz_id: int):
     if blitz is None:
         return error_response("Blitz не найден", status=404)
     return success_response(blitz_to_dict(blitz))
+
+
+@bp.post("/blitzes/<int:blitz_id>/submit")
+def submit_blitz_answers(blitz_id: int):
+    try:
+        data = get_json_body(["answers"])
+    except RequestValidationError as exc:
+        return error_response(str(exc), status=400)
+
+    user_answers = data["answers"]
+
+    if not isinstance(user_answers, dict):
+        return error_response("answers должен быть объектом", status=400)
+
+    from backend.web.service.blitz_service import BlitzService
+
+    result = BlitzService.check_blitz_answers(blitz_id, user_answers)
+
+    if "error" in result:
+        return error_response(result["error"], status=404)
+
+    return success_response(result, status=200)
 
 
 @bp.get("/blitzes/subject/<string:id_subject>")

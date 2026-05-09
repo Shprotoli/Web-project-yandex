@@ -9,16 +9,16 @@ import "../styles/page/categorys/categorys-main.scss"
 
 import rusTestImg from '../assets/img/category/hero/rus_test.png';
 
-function BlitzCard() {
+function BlitzCard({idBlitz, title, description}) {
     return (
         <li className={"blitzs__list-element"}>
             <article className={"blitz-card"}>
                 <ul className={"tag__list"}>
                     <li className={"tag__list-element"}>9 заданий</li>
-                    <li className={"tag__list-element"}>#NBLITZ1</li>
+                    <li className={"tag__list-element"}>{`#NBLITZ${idBlitz}`}</li>
                 </ul>
-                <p className={"title"}>Синонимы</p>
-                <p className={"description"}>Проверь свои знания слов и их значений: подбери правильные синонимы и расширь свой словарный запас!</p>
+                <p className={"title"}>{title}</p>
+                <p className={"description"}>{description}{description}</p>
                 <ul className={"button__list"}>
                     <button className={"button__list-element"}>
                         Решать
@@ -161,6 +161,9 @@ function BlitzsElement({idActiveSubject}) {
                         <ul className="blitzs__list">
                             {data.map((blitz) => (
                                 <BlitzCard
+                                    idBlitz={blitz.id}
+                                    title={blitz.title}
+                                    description={blitz.description}
                                     key={blitz.id || `blitz-${Math.random()}`}
                                     blitz={blitz}
                                 />
