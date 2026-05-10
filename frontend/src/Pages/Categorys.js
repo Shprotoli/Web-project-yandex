@@ -10,7 +10,7 @@ import "../styles/page/categorys/categorys-main.scss"
 import rusTestImg from '../assets/img/category/hero/rus_test.png';
 import {BlackBackground} from "../Components/black_background";
 
-function BlitzCard({idBlitz, title, description, openSharedModal}) {
+function BlitzCard({idBlitz, title, description}) {
     return (
         <li className={"blitzs__list-element"}>
             <article className={"blitz-card"}>
@@ -30,7 +30,7 @@ function BlitzCard({idBlitz, title, description, openSharedModal}) {
                             <path d="M8.05124 16.7199C7.71278 17.0583 7.71278 17.6071 8.05124 17.9455C8.38969 18.284 8.93843 18.284 9.27689 17.9455L8.66406 17.3327L8.05124 16.7199ZM18.1974 8.66602C18.1974 8.18737 17.8094 7.79935 17.3307 7.79935H9.53073C9.05208 7.79935 8.66406 8.18737 8.66406 8.66602C8.66406 9.14466 9.05208 9.53268 9.53073 9.53268H16.4641V16.466C16.4641 16.9447 16.8521 17.3327 17.3307 17.3327C17.8094 17.3327 18.1974 16.9447 18.1974 16.466V8.66602ZM8.66406 17.3327L9.27689 17.9455L17.9436 9.27884L17.3307 8.66602L16.7179 8.05319L8.05124 16.7199L8.66406 17.3327Z" fill="#7E14FF"/>
                         </svg>
                     </button>
-                    <button className={"button__list-element"} onClick={() => openSharedModal(true)}>
+                    <button className={"button__list-element"} onClick={() => navigator.clipboard.writeText(`https://blitz.ru/blitz/${idBlitz}`)}>
                         Поделиться
                         <svg style={{
                             marginLeft: "24px",
@@ -127,7 +127,39 @@ function BlitzSharedModal({isOpen, onClose}) {
     if (!isOpen) return null;
 
     return (
-        <BlackBackground onClose={onClose}></BlackBackground>
+        <>
+            <BlackBackground onClose={onClose}></BlackBackground>
+            <article className={"shared"}>
+                <aside className={"qr"}>
+                    <img
+                        src="https://avatars.mds.yandex.net/i?id=a2616b197111e665538889af97c5977e263ce881-10640589-images-thumbs&n=13"
+                        alt="QRCode"
+                    />
+                </aside>
+                <aside className={"body"}>
+                    <ul className={"body--tags"}>
+                        <li id={"shared-subject"} className={"body--tags-element"}>
+                            <p>Французский язык</p>
+                        </li>
+                        <li id={"count-question"} className={"body--tags-element"}>
+                            <p>39 заданий</p>
+                        </li>
+                        <li id={"blitz-id"} className={"body--tags-element"}>
+                            <p>#NBLITZ5821</p>
+                        </li>
+                    </ul>
+                    <p className={"body--title"}>Поделись Blitz-ом с другими!</p>
+                    <div className={"body--link"}>
+                        <p>https://blitz.ru/blitz/russ-lang/5821</p>
+                        <svg width="34" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="26" height="26" rx="5" fill="#7E14FF"/>
+                            <path d="M15.16 6.33398H12.5639C11.3877 6.33398 10.4561 6.33396 9.72703 6.43238C8.97667 6.53367 8.36935 6.74708 7.89039 7.22796C7.41145 7.70883 7.19889 8.3186 7.09801 9.07196C6.99998 9.80398 6.99999 10.7393 7 11.9202V15.8119C7 16.8173 7.6133 17.6789 8.48478 18.0401C8.43993 17.4339 8.43996 16.5831 8.44 15.8753V12.5991V12.5356C8.43995 11.6811 8.43991 10.9449 8.51885 10.3554C8.60346 9.72357 8.79426 9.11793 9.28353 8.62669C9.77281 8.13544 10.376 7.94388 11.0053 7.85894C11.5925 7.77968 12.3258 7.77972 13.1768 7.77976L13.24 7.77977H15.16L15.2232 7.77976C16.0742 7.77972 16.8059 7.77968 17.3931 7.85894C17.0418 6.96584 16.1744 6.33398 15.16 6.33398Z" fill="white"/>
+                            <path d="M9.39844 12.5976C9.39844 10.7801 9.39844 9.87141 9.96079 9.3068C10.5231 8.74219 11.4282 8.74219 13.2384 8.74219H15.1584C16.9686 8.74219 17.8737 8.74219 18.4361 9.3068C18.9984 9.87141 18.9984 10.7801 18.9984 12.5976V15.8105C18.9984 17.6279 18.9984 18.5367 18.4361 19.1013C17.8737 19.6659 16.9686 19.6659 15.1584 19.6659H13.2384C11.4282 19.6659 10.5231 19.6659 9.96079 19.1013C9.39844 18.5367 9.39844 17.6279 9.39844 15.8105V12.5976Z" fill="white"/>
+                        </svg>
+                    </div>
+                </aside>
+            </article>
+        </>
     )
 }
 
@@ -136,6 +168,18 @@ function BlitzsElement({idActiveSubject}) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'visible';
+        }
+
+        return () => {
+            document.body.style.overflow = 'visible';
+        };
+    }, [isModalOpen]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -167,8 +211,6 @@ function BlitzsElement({idActiveSubject}) {
         <>
             <aside className={"blitzs"}>
                 <ul className={"blitzs__list"}>
-                    <BlitzCard idBlitz={1} title={"1"}
-                               description={"description"} openSharedModal={() => setIsModalOpen(true)}></BlitzCard>
                     {data && data.length > 0 && (
                         <ul className="blitzs__list">
                             {data.map((blitz) => (
@@ -178,14 +220,12 @@ function BlitzsElement({idActiveSubject}) {
                                     description={blitz.description}
                                     key={blitz.id || `blitz-${Math.random()}`}
                                     blitz={blitz}
-                                    openSharedModal={() => setIsModalOpen(true)}
                                 />
                             ))}
                         </ul>
                     )}
                 </ul>
             </aside>
-            <BlitzSharedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </>
     )
 }
