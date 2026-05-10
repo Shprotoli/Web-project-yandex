@@ -41,6 +41,12 @@
       }
 
       .description {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+
+        height: 52px;
         width: 340px;
 
         margin-top: 10px;

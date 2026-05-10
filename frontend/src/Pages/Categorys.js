@@ -8,8 +8,9 @@ import "../styles/page/categorys/blitzs.scss"
 import "../styles/page/categorys/categorys-main.scss"
 
 import rusTestImg from '../assets/img/category/hero/rus_test.png';
+import {BlackBackground} from "../Components/black_background";
 
-function BlitzCard({idBlitz, title, description}) {
+function BlitzCard({idBlitz, title, description, openSharedModal}) {
     return (
         <li className={"blitzs__list-element"}>
             <article className={"blitz-card"}>
@@ -18,7 +19,7 @@ function BlitzCard({idBlitz, title, description}) {
                     <li className={"tag__list-element"}>{`#NBLITZ${idBlitz}`}</li>
                 </ul>
                 <p className={"title"}>{title}</p>
-                <p className={"description"}>{description}{description}</p>
+                <p className={"description"}>{description}</p>
                 <ul className={"button__list"}>
                     <button className={"button__list-element"}>
                         Решать
@@ -29,7 +30,7 @@ function BlitzCard({idBlitz, title, description}) {
                             <path d="M8.05124 16.7199C7.71278 17.0583 7.71278 17.6071 8.05124 17.9455C8.38969 18.284 8.93843 18.284 9.27689 17.9455L8.66406 17.3327L8.05124 16.7199ZM18.1974 8.66602C18.1974 8.18737 17.8094 7.79935 17.3307 7.79935H9.53073C9.05208 7.79935 8.66406 8.18737 8.66406 8.66602C8.66406 9.14466 9.05208 9.53268 9.53073 9.53268H16.4641V16.466C16.4641 16.9447 16.8521 17.3327 17.3307 17.3327C17.8094 17.3327 18.1974 16.9447 18.1974 16.466V8.66602ZM8.66406 17.3327L9.27689 17.9455L17.9436 9.27884L17.3307 8.66602L16.7179 8.05319L8.05124 16.7199L8.66406 17.3327Z" fill="#7E14FF"/>
                         </svg>
                     </button>
-                    <button className={"button__list-element"}>
+                    <button className={"button__list-element"} onClick={() => openSharedModal(true)}>
                         Поделиться
                         <svg style={{
                             marginLeft: "24px",
@@ -122,7 +123,16 @@ function SubjectsElement({idActiveSubject, setIdActiveSubject}) {
     );
 }
 
+function BlitzSharedModal({isOpen, onClose}) {
+    if (!isOpen) return null;
+
+    return (
+        <BlackBackground onClose={onClose}></BlackBackground>
+    )
+}
+
 function BlitzsElement({idActiveSubject}) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -157,6 +167,8 @@ function BlitzsElement({idActiveSubject}) {
         <>
             <aside className={"blitzs"}>
                 <ul className={"blitzs__list"}>
+                    <BlitzCard idBlitz={1} title={"1"}
+                               description={"description"} openSharedModal={() => setIsModalOpen(true)}></BlitzCard>
                     {data && data.length > 0 && (
                         <ul className="blitzs__list">
                             {data.map((blitz) => (
@@ -166,12 +178,14 @@ function BlitzsElement({idActiveSubject}) {
                                     description={blitz.description}
                                     key={blitz.id || `blitz-${Math.random()}`}
                                     blitz={blitz}
+                                    openSharedModal={() => setIsModalOpen(true)}
                                 />
                             ))}
                         </ul>
                     )}
                 </ul>
             </aside>
+            <BlitzSharedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </>
     )
 }

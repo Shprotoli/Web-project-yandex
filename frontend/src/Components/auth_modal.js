@@ -1,6 +1,8 @@
 import {createPortal} from 'react-dom';
 import {useState} from "react";
 
+import {BlackBackground} from "./black_background";
+
 import "../styles/auth-modal.scss"
 
 
@@ -25,8 +27,7 @@ function AuthModal({isOpen, onClose}) {
 
     return createPortal(
         <>
-            <div className="modal-background" onClick={() => onClose()}>
-            </div>
+            <BlackBackground onClose={onClose}/>
             <div className="auth-modal">
                 <aside className={"background-items"}>
                     <aside className={"background-items__top"}>

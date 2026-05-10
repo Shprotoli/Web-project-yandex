@@ -39,10 +39,9 @@ function ProfileNoAuth() {
         if (isModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = 'visible'; // или 'unset'
+            document.body.style.overflow = 'visible';
         }
 
-        // Очистка при размонтировании компонента
         return () => {
             document.body.style.overflow = 'visible';
         };
