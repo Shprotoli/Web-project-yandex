@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from flask import request
 
 from backend.other.config import DevelopmentConfig
 from backend.other.extensions import db, migrate
@@ -21,17 +22,23 @@ def create_app(config_object=DevelopmentConfig):
     app = Flask(__name__)
     app.config.from_object(config_object)
 
-    CORS(app)
-    CORS(app,
-         origins=["http://localhost:3001", "http://127.0.0.1:3001", "http://localhost:3000"],
-         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-         allow_headers=["Content-Type", "Authorization"],
-         supports_credentials=True,
-         max_age=3600)
+    # Отключаем все ограничения
+    CORS(app, origins="*", methods="*", allow_headers="*", supports_credentials=True)
 
     db.init_app(app)
     migrate.init_app(app, db)
     register_api(app)
+
+    # Ловим ВСЕ OPTIONS запросы глобально
+    @app.before_request
+    def handle_options():
+        if request.method == 'OPTIONS':
+            resp = app.make_response('')
+            resp.headers['Access-Control-Allow-Origin'] = request.headers.get('Origin', '*')
+            resp.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+            resp.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+            resp.headers['Access-Control-Allow-Credentials'] = 'true'
+            return resp
 
     return app
 
