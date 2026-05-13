@@ -11,7 +11,7 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<CategorysPage />} />
-            <Route path="/blitz" element={<BlitzPage />} />
+            <Route path="/blitzes/:id" element={<BlitzPage />} />
         </Routes>
     </BrowserRouter>
 );

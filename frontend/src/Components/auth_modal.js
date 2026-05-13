@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 import { BlackBackground } from "./black_background";
 import "../styles/auth-modal.scss";
