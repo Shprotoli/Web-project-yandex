@@ -10,6 +10,8 @@ from backend.api import register_api
 from backend.db.models.user import User
 from backend.db.models.blitz import Blitz
 from backend.db.models.session import Session
+from backend.db.models.question import Question
+from backend.db.models.answer import Answer
 
 from flask import Blueprint
 from backend.api.resources.auth import bp as auth_bp

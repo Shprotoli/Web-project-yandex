@@ -5,6 +5,7 @@ from backend.api.utils.http import error_response, success_response
 from backend.api.utils.request import RequestValidationError, get_json_body
 from backend.db.models.blitz import Blitz
 from backend.db.repositories.blitz_repository import BlitzRepository
+from backend.db.repositories.question_repository import QuestionRepository
 
 bp = Blueprint("blitzes_api", __name__)
 
@@ -39,9 +40,33 @@ def create_blitz():
 @bp.get("/blitzes/<int:blitz_id>")
 def get_blitz(blitz_id: int):
     blitz = BlitzRepository.get_by_id(blitz_id)
+
     if blitz is None:
         return error_response("Blitz не найден", status=404)
-    return success_response(blitz_to_dict(blitz))
+
+    questions = QuestionRepository().get_by_blitz(blitz_id)
+
+    result = blitz_to_dict(blitz)
+    result["questions"] = []
+
+    for question in questions:
+        question_dict = {
+            "id": question.id,
+            "text": question.text,
+            "order_num": question.order_num,
+            "answers": []
+        }
+
+        for answer in question.answers:
+            question_dict["answers"].append({
+                "id": answer.id,
+                "text": answer.text,
+                "is_correct": answer.is_correct,
+            })
+
+        result["questions"].append(question_dict)
+
+    return success_response(result)
 
 
 @bp.post("/blitzes/<int:blitz_id>/submit")
@@ -68,6 +93,7 @@ def submit_blitz_answers(blitz_id: int):
 
 @bp.get("/blitzes/subject/<string:id_subject>")
 def get_blitz_by_id_subject(id_subject: str):
+    print(id_subject)
     blitzes = BlitzRepository.get_by_id_subject(id_subject)
 
     if not blitzes:
