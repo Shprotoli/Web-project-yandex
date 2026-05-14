@@ -143,7 +143,7 @@ function AuthModal({ isOpen, onClose }) {
                 <aside className="body">
                     <ul className="input-list">
                         <aside className="input-list__item-auth" style={{ display: mode === "auth" ? "block" : "none" }}>
-                            <ModalInputComponent titleInput="Введите почту" inputRef={emailRef} />
+                            <ModalInputComponent titleInput="Введите логин" inputRef={emailRef} />
                             <ModalInputComponent titleInput="Введите пароль" typeInput="password" inputRef={passwordRef} />
                         </aside>
 
