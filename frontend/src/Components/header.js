@@ -166,7 +166,7 @@ function Header() {
 
     return (
         <header className="header">
-            <section className={"header__logo"}>
+            <section className={"header__logo"} onClick={() => window.location = "/"}>
                 <img src={logoPNG} width={46} alt="logo"/>
                 <svg width="56" height="28" viewBox="0 0 49 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
