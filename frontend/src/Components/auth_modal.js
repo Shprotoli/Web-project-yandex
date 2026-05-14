@@ -45,7 +45,7 @@ function AuthModal({ isOpen, onClose }) {
         }
 
         try {
-            const res = await fetch('http://127.0.0.1:8080/auth/login', {
+            const res = await fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
@@ -96,7 +96,7 @@ function AuthModal({ isOpen, onClose }) {
         }
 
         try {
-            const res = await fetch('http://127.0.0.1:8080/auth/register', {
+            const res = await fetch('/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

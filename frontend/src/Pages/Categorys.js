@@ -131,7 +131,7 @@ function BlitzsElement({ idActiveSubject }) {
             setError(null);
 
             try {
-                const response = await fetch(`http://127.0.0.1:8080/api/v1/blitzes/subject/${idActiveSubject}`);
+                const response = await fetch(`/api/v1/blitzes/subject/${idActiveSubject}`);
 
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
@@ -176,7 +176,7 @@ function BlitzsElement({ idActiveSubject }) {
 }
 
 function CategorysPage() {
-    const [idActiveSubject, setIdActiveSubject] = useState(1); // ← теперь число
+    const [idActiveSubject, setIdActiveSubject] = useState(1);
 
     return (
         <>

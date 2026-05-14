@@ -98,7 +98,7 @@ function Header() {
         }
 
         try {
-            const res = await fetch('http://127.0.0.1:8080/users/me', {
+            const res = await fetch('/users/me', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -144,7 +144,7 @@ function Header() {
         if (!token) return;
 
         try {
-            const res = await fetch('http://127.0.0.1:8080/auth/logout', {
+            const res = await fetch('/auth/logout', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

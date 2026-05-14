@@ -57,7 +57,7 @@ function BlitzPage() {
         const fetchBlitz = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`http://127.0.0.1:8080/api/v1/blitzes/${id}`);
+                const response = await fetch(`/api/v1/blitzes/${id}`);
                 if (!response.ok) throw new Error("Блиц не найден");
                 const result = await response.json();
                 setBlitz(result.data);
@@ -85,7 +85,7 @@ function BlitzPage() {
         setSubmitResult(null);
 
         try {
-            const response = await fetch(`http://127.0.0.1:8080/api/v1/blitzes/${id}/submit`, {
+            const response = await fetch(`/api/v1/blitzes/${id}/submit`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ answers: selectedAnswers }),

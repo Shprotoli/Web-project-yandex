@@ -9,7 +9,7 @@ class BlitzService:
     @staticmethod
     def check_blitz_answers(
             blitz_id: int,
-            user_answers: Dict[int, int]
+            user_answers: Dict[str, int]
     ) -> Dict:
         questions = QuestionRepository.get_by_blitz(blitz_id)
 
@@ -21,7 +21,7 @@ class BlitzService:
         results = []
 
         for question in questions:
-            user_answer_id = user_answers.get(question.id)
+            user_answer_id = user_answers[f'{question.id}']
 
             if user_answer_id is None:
                 results.append({

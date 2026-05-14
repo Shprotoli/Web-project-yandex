@@ -93,7 +93,6 @@ def submit_blitz_answers(blitz_id: int):
 
 @bp.get("/blitzes/subject/<string:id_subject>")
 def get_blitz_by_id_subject(id_subject: str):
-    print(id_subject)
     blitzes = BlitzRepository.get_by_id_subject(id_subject)
 
     if not blitzes:
