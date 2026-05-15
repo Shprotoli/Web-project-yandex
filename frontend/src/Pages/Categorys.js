@@ -182,7 +182,6 @@ function CategorysPage() {
         <>
             <Header />
             <main>
-                <BannerElement />
                 <SubjectsElement
                     idActiveSubject={idActiveSubject}
                     setIdActiveSubject={setIdActiveSubject}
